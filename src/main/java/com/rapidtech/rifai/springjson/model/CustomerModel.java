@@ -20,7 +20,7 @@ public class CustomerModel implements Serializable {
     private Long id;
     private String fullName;
 
-    private List<AddressModel> address = new ArrayList<AddressModel>();
+    private List<AddressModel> address;
 
     private String gender;
     @Temporal(TemporalType.DATE)
@@ -28,7 +28,7 @@ public class CustomerModel implements Serializable {
     private Date dateOfBirth;
     private String placeOfBirth;
 
-    private List<SchoolModel> schools = new ArrayList<SchoolModel>();
+    List<SchoolModel> schools;
 
     public CustomerModel(CustomerEntity entity){
         BeanUtils.copyProperties(entity, this);

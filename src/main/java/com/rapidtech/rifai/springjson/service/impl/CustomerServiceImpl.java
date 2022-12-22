@@ -45,6 +45,7 @@ public class CustomerServiceImpl implements CustomerService {
 
         CustomerEntity entity = new CustomerEntity(model);
         entity.addAddressList(model.getAddress());
+        entity.addSchoolList(model.getSchools());
 
         try {
             this.customerRepo.save(entity);
