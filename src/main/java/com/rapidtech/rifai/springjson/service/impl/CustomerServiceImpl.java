@@ -39,19 +39,18 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public Optional<CustomerModel> save(CustomerModel model) {
-        if(model == null || model.getAddress().isEmpty() || model.getSchools().isEmpty()) {
+        if (model == null || model.getAddress().isEmpty()) {
             return Optional.empty();
         }
 
         CustomerEntity entity = new CustomerEntity(model);
         entity.addAddressList(model.getAddress());
-        entity.addSchoolList(model.getSchools());
 
-        try{
-            customerRepo.save(entity);
+        try {
+            this.customerRepo.save(entity);
             return Optional.of(model);
-        }catch (Exception e){
-            log.error("Customer save is failed, error: {}", e.getMessage());
+        } catch (Exception e) {
+            log.error("Purchase Order save is failed, error: {}", e.getMessage());
             return Optional.empty();
         }
     }
