@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class CustomersController {
 
     @PostMapping
-    public ResponseEntity<Object> save(@RequestBody CustomerRequest customers){
-        return ResponseEntity.ok().body(new ResponseModel(customers));
+    public ResponseEntity<Object> save(@RequestBody ResponseModel customers){
+        return ResponseEntity.ok().body(customers);
     }
 }

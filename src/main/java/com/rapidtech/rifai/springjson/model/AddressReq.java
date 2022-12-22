@@ -4,13 +4,10 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.annotation.security.DenyAll;
-import java.io.Serializable;
-
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class AddressReq{
+public class AddressReq {
     private String name;
     private String address;
     private String village;
@@ -18,3 +15,4 @@ public class AddressReq{
     private String city;
     private String province;
 }
+
