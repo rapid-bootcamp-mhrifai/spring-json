@@ -5,11 +5,12 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.annotation.security.DenyAll;
+import java.io.Serializable;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class AddressReq {
+public class AddressReq implements Serializable {
     private String name;
     private String address;
     private String village;

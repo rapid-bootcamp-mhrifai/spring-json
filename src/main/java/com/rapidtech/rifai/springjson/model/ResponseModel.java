@@ -8,5 +8,5 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ResponseModel {
-    private Object customers;
+    private CustomerRequest customers;
 }
