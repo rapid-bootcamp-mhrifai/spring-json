@@ -11,7 +11,7 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class CustomerRequest implements Serializable {
+public class CustomerRequest{
     private Long id;
     private String fullName;
     private String gender;

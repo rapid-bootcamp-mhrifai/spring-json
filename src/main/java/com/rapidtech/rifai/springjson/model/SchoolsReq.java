@@ -9,7 +9,7 @@ import java.io.Serializable;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class SchoolsReq implements Serializable {
+public class SchoolsReq{
     private String title;
     private String name;
     private String level;

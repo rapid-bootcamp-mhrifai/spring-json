@@ -10,7 +10,7 @@ import java.io.Serializable;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class AddressReq implements Serializable {
+public class AddressReq{
     private String name;
     private String address;
     private String village;
