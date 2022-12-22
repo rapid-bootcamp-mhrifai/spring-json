@@ -20,7 +20,7 @@ public class CustomerController {
     public CustomerController(CustomerService customerService) {
         this.service = customerService;
     }
-
+//hh
     @PostMapping(value = "/save", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Object> save(@RequestBody CustomerModel request){
         return ResponseEntity.ok().body(
