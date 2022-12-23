@@ -21,7 +21,7 @@ public class CustomerModel implements Serializable {
 
     private String fullName;
 
-    List<AddressModel> address;
+    private List<AddressModel> address;
 
     private String gender;
 
@@ -31,7 +31,7 @@ public class CustomerModel implements Serializable {
 
     private String placeOfBirth;
 
-    List<SchoolModel> schools;
+    private List<SchoolModel> schools;
 
     public CustomerModel(CustomerEntity entity){
         BeanUtils.copyProperties(entity, this);

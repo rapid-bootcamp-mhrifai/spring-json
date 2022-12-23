@@ -40,8 +40,11 @@ public class AddressEntity {
     @Column(name = "province", length = 100, nullable = false)
     private String province;
 
+    @Column(name = "customer_id", insertable = false, updatable = false)
+    private Long customerId;
+
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "customer_id", insertable = false, updatable = false)
+    @JoinColumn(name = "customer_id", nullable = false)
     private CustomerEntity customerAddress;
 
     public AddressEntity (AddressModel model){

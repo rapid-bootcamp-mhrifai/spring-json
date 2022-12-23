@@ -30,8 +30,11 @@ public class SchoolEntity {
     @Column(name = "level", length = 250, nullable = false)
     private String level;
 
+    @Column(name = "customer_id", insertable = false, updatable = false)
+    private Long customerId;
+
     @ManyToOne
-    @JoinColumn(name = "customer_id", insertable = false, updatable = false)
+    @JoinColumn(name = "customer_id", nullable = false)
     private CustomerEntity customerSchool;
 
     public SchoolEntity(SchoolModel model) {
