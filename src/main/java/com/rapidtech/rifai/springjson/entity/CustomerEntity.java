@@ -9,10 +9,7 @@ import lombok.NoArgsConstructor;
 import org.springframework.beans.BeanUtils;
 
 import javax.persistence.*;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -41,10 +38,10 @@ public class CustomerEntity {
     private String placeOfBirth;
 
     @OneToMany(mappedBy = "customerAddress", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<AddressEntity> addressEntities = new HashSet<>();
+    private List<AddressEntity> addressEntities = new ArrayList<>();
 
     @OneToMany(mappedBy = "customerSchool", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<SchoolEntity> schoolEntities = new HashSet<>();
+    private List<SchoolEntity> schoolEntities = new ArrayList<>();
 
     public CustomerEntity(CustomerModel model){
         BeanUtils.copyProperties(model, this);
@@ -68,10 +65,9 @@ public class CustomerEntity {
     }
 
     public void addSchoolList(List<SchoolModel> schoolModels){
-        for(SchoolModel item: schoolModels){
-            SchoolEntity schoolEntity = new SchoolEntity(item);
+        for(SchoolModel item2: schoolModels){
+            SchoolEntity schoolEntity = new SchoolEntity(item2);
             addSchool(schoolEntity);
         }
     }
 }
-

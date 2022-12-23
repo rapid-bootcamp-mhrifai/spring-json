@@ -1,7 +1,11 @@
 package com.rapidtech.rifai.springjson.service.impl;
 
+import com.rapidtech.rifai.springjson.entity.AddressEntity;
 import com.rapidtech.rifai.springjson.entity.CustomerEntity;
+import com.rapidtech.rifai.springjson.model.AddressModel;
 import com.rapidtech.rifai.springjson.model.CustomerModel;
+import com.rapidtech.rifai.springjson.model.CustomerRequest;
+import com.rapidtech.rifai.springjson.model.CustomerResponse;
 import com.rapidtech.rifai.springjson.repository.AddressRepo;
 import com.rapidtech.rifai.springjson.repository.CustomerRepo;
 import com.rapidtech.rifai.springjson.repository.SchoolsRepo;
@@ -10,6 +14,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -27,6 +32,7 @@ public class CustomerServiceImpl implements CustomerService {
         this.schoolRepo = schoolRepo;
     }
 
+
     @Override
     public List<CustomerModel> getAll() {
         return null;
@@ -38,23 +44,72 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
+    public CustomerResponse saveAll(CustomerRequest request) {
+        if(request.getCustomers().isEmpty()) {
+            return new CustomerResponse();
+        }
+        CustomerResponse response = new CustomerResponse();
+        int countSuccess = 0;
+        int countFailed = 0;
+        List<CustomerModel> customerModels = new ArrayList<>();
+        for (CustomerModel model: request.getCustomers()){
+            // panggil method save
+            Optional<CustomerModel> customerModel = this.save(model);
+            // check datanya
+            if(customerModel.isPresent()){
+                customerModels.add(model);
+                countSuccess++;
+            }else {
+                countFailed++;
+            }
+        }
+        return new CustomerResponse(customerModels, countSuccess, countFailed);
+
+        //response.setData(customerModels);
+        //response.setSuccessSave(countSuccess);
+        //response.setFailedSave(countFailed);
+        //return response;
+    }
+
+    @Override
     public Optional<CustomerModel> save(CustomerModel model) {
-        if (model == null || model.getAddress().isEmpty()) {
+
+        if (model == null || model.getAddress().isEmpty() || model.getSchools().isEmpty()) {
             return Optional.empty();
         }
 
-        CustomerEntity entity = new CustomerEntity(model);
-        entity.addAddressList(model.getAddress());
-        entity.addSchoolList(model.getSchools());
+        CustomerEntity customerEntity = new CustomerEntity(model);
+        customerEntity.addAddressList(model.getAddress());
+        customerEntity.addSchoolList(model.getSchools());
 
         try {
-            this.customerRepo.save(entity);
-            return Optional.of(model);
+            this.customerRepo.save(customerEntity);
+            return Optional.of(new CustomerModel(customerEntity));
         } catch (Exception e) {
-            log.error("Purchase Order save is failed, error: {}", e.getMessage());
+            log.error("Customer save is failed, error: {}", e.getMessage());
             return Optional.empty();
         }
     }
+
+
+
+    /*@Override
+    public Optional<AddressModel> saveAddress(AddressModel addressModel) {
+        if (addressModel == null){
+            return Optional.empty();
+        }
+        AddressEntity addressEntity = new AddressEntity(addressModel);
+        try {
+            this.addressRepo.save(addressEntity);
+            return Optional.of(new AddressModel(addressEntity));
+        }catch (Exception e){
+            log.error("Address save is failed, error: {}", e.getMessage());
+            return Optional.empty();
+        }
+    }
+
+     */
+
 
     @Override
     public Optional<CustomerModel> update(Long id, CustomerModel model) {

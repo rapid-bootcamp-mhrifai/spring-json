@@ -9,7 +9,9 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class CustomerRequest {
-    private List<CustomerModel> customers;
+public class CustomerResponse {
+    private List<CustomerModel> data;
+    private Integer successSave;
+    private Integer failedSave;
 }
 

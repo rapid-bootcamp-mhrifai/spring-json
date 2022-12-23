@@ -18,14 +18,17 @@ import javax.persistence.TemporalType;
 @NoArgsConstructor
 public class CustomerModel implements Serializable {
     private Long id;
+
     private String fullName;
 
-    private List<AddressModel> address;
+    List<AddressModel> address;
 
     private String gender;
+
     @Temporal(TemporalType.DATE)
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date dateOfBirth;
+
     private String placeOfBirth;
 
     List<SchoolModel> schools;

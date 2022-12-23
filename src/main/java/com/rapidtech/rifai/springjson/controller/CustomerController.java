@@ -1,10 +1,8 @@
 package com.rapidtech.rifai.springjson.controller;
 
-import com.rapidtech.rifai.springjson.model.CustomerModel;
 import com.rapidtech.rifai.springjson.model.CustomerRequest;
 import com.rapidtech.rifai.springjson.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -20,11 +18,12 @@ public class CustomerController {
     public CustomerController(CustomerService customerService) {
         this.service = customerService;
     }
-//hhh
-    @PostMapping(value = "/save", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Object> save(@RequestBody CustomerModel request){
+
+    @PostMapping
+    public ResponseEntity<Object> save(@RequestBody CustomerRequest request){
         return ResponseEntity.ok().body(
-                new CustomerRequest(service.save(request))
+                service.saveAll(request)
         );
     }
+
 }
