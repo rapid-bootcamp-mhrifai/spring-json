@@ -21,8 +21,6 @@ public class CustomerModel implements Serializable {
 
     private String fullName;
 
-    private List<AddressModel> address;
-
     private String gender;
 
     @Temporal(TemporalType.DATE)
@@ -30,6 +28,8 @@ public class CustomerModel implements Serializable {
     private Date dateOfBirth;
 
     private String placeOfBirth;
+
+    private List<AddressModel> address;
 
     private List<SchoolModel> schools;
 

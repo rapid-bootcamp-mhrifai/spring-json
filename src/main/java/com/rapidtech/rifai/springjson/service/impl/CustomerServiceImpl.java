@@ -91,26 +91,6 @@ public class CustomerServiceImpl implements CustomerService {
         }
     }
 
-
-
-    /*@Override
-    public Optional<AddressModel> saveAddress(AddressModel addressModel) {
-        if (addressModel == null){
-            return Optional.empty();
-        }
-        AddressEntity addressEntity = new AddressEntity(addressModel);
-        try {
-            this.addressRepo.save(addressEntity);
-            return Optional.of(new AddressModel(addressEntity));
-        }catch (Exception e){
-            log.error("Address save is failed, error: {}", e.getMessage());
-            return Optional.empty();
-        }
-    }
-
-     */
-
-
     @Override
     public Optional<CustomerModel> update(Long id, CustomerModel model) {
         return Optional.empty();
